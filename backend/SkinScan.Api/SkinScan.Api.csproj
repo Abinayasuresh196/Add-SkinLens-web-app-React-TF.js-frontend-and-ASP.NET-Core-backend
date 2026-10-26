@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>SkinScan.Api</RootNamespace>
+    <RollForward>Major</RollForward>
+  </PropertyGroup>
+
+  <!-- No NuGet packages needed: auth, password hashing, rate limiting and JSON all ship with ASP.NET Core 8. -->
+
+  <ItemGroup>
+    <Content Update="data\**" CopyToPublishDirectory="Never" />
+  </ItemGroup>
+
+</Project>

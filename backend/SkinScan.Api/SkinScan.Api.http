@@ -1,0 +1,46 @@
+### Open this file in Visual Studio / VS Code (REST Client) and click "Send Request".
+@api = http://localhost:5080
+
+GET {{api}}/api/health
+
+###
+GET {{api}}/api/model-info
+
+### Create an account (returns accessToken)
+POST {{api}}/api/auth/register
+Content-Type: application/json
+
+{ "name": "Santa", "email": "santa@example.com", "password": "supersecret1" }
+
+### Sign in - copy accessToken from the response into @token below
+POST {{api}}/api/auth/login
+Content-Type: application/json
+
+{ "email": "santa@example.com", "password": "supersecret1" }
+
+###
+@token = paste-access-token-here
+
+GET {{api}}/api/auth/me
+Authorization: Bearer {{token}}
+
+### Save a scan (probabilities in labels.json order: akiec, bcc, bkl, df, mel, nv, vasc)
+POST {{api}}/api/scans
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "predictedCode": "mel",
+  "confidence": 0.62,
+  "probabilities": [0.05, 0.10, 0.05, 0.03, 0.62, 0.10, 0.05],
+  "bodySite": "Left forearm",
+  "note": "Test scan"
+}
+
+###
+GET {{api}}/api/scans
+Authorization: Bearer {{token}}
+
+###
+GET {{api}}/api/scans/stats
+Authorization: Bearer {{token}}
